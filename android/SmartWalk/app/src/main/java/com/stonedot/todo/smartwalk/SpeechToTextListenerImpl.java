@@ -31,12 +31,11 @@ public class SpeechToTextListenerImpl implements RecognitionListener {
 
     @Override
     public void onReadyForSpeech(Bundle bundle) {
-        Toast.makeText(mContext, "音声入力開始", Toast.LENGTH_SHORT).show();
+        Toast.makeText(mContext, R.string.stt_start_input_speech, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onBeginningOfSpeech() {
-        // Toast.makeText(mContext, "音声が入力されました", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -51,48 +50,52 @@ public class SpeechToTextListenerImpl implements RecognitionListener {
 
     @Override
     public void onEndOfSpeech() {
-        Toast.makeText(mContext, "音声入力終了", Toast.LENGTH_SHORT).show();
+        Toast.makeText(mContext, R.string.stt_finish_input_speech, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onError(int error) {
         switch (error) {
             case SpeechRecognizer.ERROR_AUDIO:
-                Toast.makeText(mContext, "音声データを認識できませんでした", Toast.LENGTH_SHORT).show();
+                errorToast(R.string.stt_error_audio);
                 break;
             case SpeechRecognizer.ERROR_CLIENT:
-                Toast.makeText(mContext, "未確認のエラーが発生しました", Toast.LENGTH_SHORT).show();
+                errorToast(R.string.stt_error_client);
                 break;
             case SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS:
-                Toast.makeText(mContext, "音声認識機能を使用する権限がありません", Toast.LENGTH_SHORT).show();
+                errorToast(R.string.stt_error_insufficient_permissions);
                 break;
             case SpeechRecognizer.ERROR_NETWORK:
                 // ネットワークエラー(その他)
-                Toast.makeText(mContext, "ネットワークエラーが発生しました", Toast.LENGTH_SHORT).show();
+                errorToast(R.string.stt_error_network);
                 break;
             case SpeechRecognizer.ERROR_NETWORK_TIMEOUT:
                 // ネットワークタイムアウトエラー
-                Toast.makeText(mContext, "ネットワークとの接続がタイムアウトしました", Toast.LENGTH_SHORT).show();
+                errorToast(R.string.stt_error_network_timeout);
                 break;
             case SpeechRecognizer.ERROR_NO_MATCH:
                 // 音声認識結果無し
-                Toast.makeText(mContext, "音声を認識できませんでした。", Toast.LENGTH_SHORT).show();
+                errorToast(R.string.stt_error_no_match);
                 if(mListener != null) mListener.onGetTextFromSpeechFailed(nextGuide);
                 break;
             case SpeechRecognizer.ERROR_RECOGNIZER_BUSY:
-                Toast.makeText(mContext, "音声認識プログラムが使用中です", Toast.LENGTH_SHORT).show();
+                errorToast(R.string.stt_error_recognizer_busy);
                 break;
             case SpeechRecognizer.ERROR_SERVER:
-                Toast.makeText(mContext, "サーバのエラーです", Toast.LENGTH_SHORT).show();
+                errorToast(R.string.stt_error_server);
                 break;
             case SpeechRecognizer.ERROR_SPEECH_TIMEOUT:
                 // 音声入力無し
-                Toast.makeText(mContext, "音声入力がありませんでした。", Toast.LENGTH_SHORT).show();
+                errorToast(R.string.stt_error_speech_timeout);
                 if(mListener != null) mListener.onGetTextFromSpeechFailed(nextGuide);
                 break;
             default:
                 break;
         }
+    }
+
+    private void errorToast(int stringId) {
+        Toast.makeText(mContext, stringId, Toast.LENGTH_SHORT).show();
     }
 
     // Bundleが新しくなってしまったもので、Guideを受け取れないので、

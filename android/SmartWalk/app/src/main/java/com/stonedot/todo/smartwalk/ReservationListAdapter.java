@@ -41,6 +41,7 @@ public class ReservationListAdapter extends ArrayAdapter<Reservation> {
     private void setItem(Reservation reservation) {
         ((TextView) mConvertView.findViewById(R.id.reservation_sender)).setText(reservation.getSender());
         ((TextView) mConvertView.findViewById(R.id.reservation_content)).setText(reservation.getContent());
-        ((TextView) mConvertView.findViewById(R.id.reservation_time)).setText(reservation.getTime());
+        ((TextView) mConvertView.findViewById(R.id.reservation_time))
+                .setText(reservation.getTime(getContext().getString(R.string.notification_time_format)));
     }
 }

@@ -44,13 +44,13 @@ public class LINEFriendRegisterActivity extends AppCompatActivity {
                         Log.d("LINERegisterAcitivity", "Response");
                         Log.d("LINERegisterAcitivity", content);
                         if(code == 200) {
-                            Toast toast = Toast.makeText(getApplicationContext(), "友達登録が完了しました。", Toast.LENGTH_LONG);
+                            Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.line_register_completed), Toast.LENGTH_LONG);
                             toast.show();
                         } else if (code == 204) {
-                            Toast toast = Toast.makeText(getApplicationContext(), "友達登録の必要がありません。", Toast.LENGTH_LONG);
+                            Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.line_friend_register_no_need), Toast.LENGTH_LONG);
                             toast.show();
                         }  else {
-                            Toast toast = Toast.makeText(getApplicationContext(), "友達登録に失敗しました。", Toast.LENGTH_LONG);
+                            Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.line_friend_register_failed), Toast.LENGTH_LONG);
                             toast.show();
                         }
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);

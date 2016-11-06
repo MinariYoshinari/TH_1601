@@ -1,9 +1,53 @@
 <resources>
     <string name="app_name">SmartWalk</string>
-    <string name="description">このアプリをバックグラウンドで\n起動している間、LINE通知を受け取ります。</string>s
-    <string name="no_message">受け取ったメッセージはまだありません。</string>
-    <string name="format_line">さんからのラインの通知です。</string>
+    <string name="description">このアプリをバックグラウンドで\n起動している間、LINE通知を受け取ります。</string>
+    <string name="line_login">LINEにログイン</string>
+    <string name="about">SmartWalkについて</string>
+    <string name="latest_notification">最新の通知</string>
+    <string name="reserved_notification">保留された通知\n(タップで返信/長押しで削除)</string>
+    <string name="no_notification">最新の通知はありません。</string>
+    <string name="line_sender_format">%sさんからのラインの通知です。</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="decide_reply_word">返信</string>
+    <string name="decide_send_word">送信</string>
+    <string name="notification_time_format">MM月dd日 HH:mm:ss</string>
+
+    <string name="line_register_completed">LINEの登録が完了しました。</string>
+    <string name="line_register_failed">LINEの登録に失敗しました。</string>
+
+    <string name="guide_confirm_reply">「返信」と言うと返信します</string>
+    <string name="guide_be_friend_to_reply">返信するには、スマートウォークで友達登録を行ってください</string>
+    <string name="guide_reserve">保留されます</string>
+    <string name="guide_input_message">メッセージを入力してください</string>
+    <string name="guide_input_message_failed">メッセージが入力されませんでした</string>
+    <string name="guide_input_message_repeat_format">返信メッセージは、%s、です</string>
+    <string name="guide_confirm_send">「送信」と言うと送信します</string>
+    <string name="guide_input_message_again">メッセージを再入力してください</string>
+    <string name="guide_send_failed">メッセージの送信に失敗しました</string>
+    <string name="guide_send_message">メッセージを送信しました</string>
+    <string name="guide_input_speech_failed">音声認識に失敗しました</string>
+
+    <string name="input_speech">音声を入力</string>
+    <string name="tts_error_init">初期化エラーが発生しました</string>
+    <string name="tts_error_language">言語選択エラーが発生しました</string>
+
+    <string name="stt_start_input_speech">音声入力開始</string>
+    <string name="stt_finish_input_speech">音声入力終了</string>
+    <string name="stt_error_audio">音声データを認識できませんでした</string>
+    <string name="stt_error_client">インターネット接続を確認してください</string>
+    <string name="stt_error_insufficient_permissions">音声認識機能を使用する権限がありません</string>
+    <string name="stt_error_network">ネットワークエラーが発生しました</string>
+    <string name="stt_error_network_timeout">ネットワークとの接続がタイムアウトしました</string>
+    <string name="stt_error_no_match">音声を認識できませんでした。</string>
+    <string name="stt_error_recognizer_busy">音声認識プログラムが使用中です</string>
+    <string name="stt_error_server">サーバのエラーです</string>
+    <string name="stt_error_speech_timeout">音声入力がありませんでした。</string>
+
+    <string name="lfd_dialog_message">全ての機能を使うためにはSmartWalkと友だちになる必要があります。</string>
+    <string name="lfd_dialog_accept">友だちになる</string>
+    <string name="lfd_dialog_decline">やめる</string>
+
+    <string name="line_friend_register_completed">友達登録が完了しました</string>
+    <string name="line_friend_register_no_need">友達登録の必要がありません</string>
+    <string name="line_friend_register_failed">友達登録に失敗しました</string>
 </resources>

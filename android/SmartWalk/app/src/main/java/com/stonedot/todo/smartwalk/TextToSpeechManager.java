@@ -2,7 +2,6 @@ package com.stonedot.todo.smartwalk;
 
 import android.content.Context;
 import android.speech.tts.TextToSpeech;
-import android.util.Log;
 import android.widget.Toast;
 
 import java.util.HashMap;
@@ -28,7 +27,7 @@ public class TextToSpeechManager implements TextToSpeech.OnInitListener {
     @Override
     public void onInit(int status) {
         if (status != TextToSpeech.SUCCESS) {
-            Toast.makeText(mContext, "初期化エラー", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext, R.string.tts_error_init, Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -41,30 +40,24 @@ public class TextToSpeechManager implements TextToSpeech.OnInitListener {
             mTTS.setLanguage(locale);
             mInitCompletedFlag = true;
         }
-        else Toast.makeText(mContext, "言語選択エラー", Toast.LENGTH_SHORT).show();
+        else Toast.makeText(mContext, R.string.tts_error_language, Toast.LENGTH_SHORT).show();
     }
 
     public void textToSpeech(String text, Guide guide) {
         if (mTTS == null || text.length() <= 0 || !mInitCompletedFlag) return;
         HashMap<String, String> parameter = new HashMap<String, String>();
         parameter.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, guide.toString());
-        mTTS.speak(removePictureChars(text), TextToSpeech.QUEUE_ADD, parameter);
+        mTTS.speak(TextManager.extractSpeakableChars(text), TextToSpeech.QUEUE_ADD, parameter);
+    }
+
+    public void cancel() {
+        if (mTTS != null) mTTS.stop();
     }
 
     public void shutdown() {
         if(mTTS == null) return;
+        mTTS.stop();
         mTTS.shutdown();
         mTTS = null;
-    }
-
-    // TODO 絵文字認識できない
-    private String removePictureChars(String text) {
-        Log.d("TextToSpeechManager", text);
-        StringBuffer buffer = new StringBuffer();
-        for(char c : text.toCharArray()) {
-            if(Character.UnicodeBlock.of(c) == Character.UnicodeBlock.PRIVATE_USE_AREA) continue;
-            buffer.append(c);
-        }
-        return buffer.toString();
     }
 }

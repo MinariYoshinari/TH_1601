@@ -1,14 +1,7 @@
 package com.stonedot.todo.smartwalk;
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
 
 import org.apache.commons.lang.RandomStringUtils;
 
@@ -22,40 +15,25 @@ import jp.line.android.sdk.login.LineLoginFuture;
 import jp.line.android.sdk.login.LineLoginFutureListener;
 import jp.line.android.sdk.model.Profile;
 
-public class LINEFragment extends Fragment {
+/**
+ * Created by komatsu on 2016/11/06.
+ */
 
-    private Activity mActivity;
-    private View mFragment;
+public class LINELoginPage {
 
-    private TextView mTextMessage;
-    private Button mButtonLine;
+    public static final String FILENAME_LINE_ID = "line_id";
+    private AppCompatActivity mActivity;
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mActivity = getActivity();
-        mFragment = inflater.inflate(R.layout.fragment_line, container, false);
-        findViews();
-        return mFragment;
+    public LINELoginPage(AppCompatActivity activity) {
+        mActivity = activity;
     }
 
-    /**
-     * UIのインスタンスをメンバ変数として取得
-     */
-    private void findViews() {
-        mTextMessage = (TextView) mFragment.findViewById(R.id.text_line_message);
-        mButtonLine = (Button)mFragment.findViewById(R.id.buttonForLineLogin);
-        Log.d("LineFragment", "Setting event listener.");
-        mButtonLine.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("LineFragment", "Clicked LINE login button.");
-                LineSdkContext sdkContext = LineSdkContextManager.getSdkContext();
-                LineAuthManager authManager = sdkContext.getAuthManager();
-                LineLoginFuture loginFuture = authManager.login(getActivity());
-                loginFuture.addFutureListener(loginComplete);
-            }
-
-        });
+    public void openLoginPage() {
+        Log.d("LineFragment", "Clicked LINE login button.");
+        LineSdkContext sdkContext = LineSdkContextManager.getSdkContext();
+        LineAuthManager authManager = sdkContext.getAuthManager();
+        LineLoginFuture loginFuture = authManager.login(mActivity);
+        loginFuture.addFutureListener(loginComplete);
     }
 
     private LineLoginFutureListener loginComplete = new LineLoginFutureListener() {
@@ -74,16 +52,17 @@ public class LINEFragment extends Fragment {
                 default:
                     Log.d("LineFragment", "Line login go something wrong." + future.getProgress().toString());
                     Log.d("LineFragment", "We are trying fallback.");
-                    String mid = RandomStringUtils.randomAlphanumeric(30);
-                    UserDataStorage.putLineMid(getActivity(), mid);
+                    if(UserDataStorage.getLineMid(mActivity).isEmpty()) {
+                        String mid = RandomStringUtils.randomAlphanumeric(30);
+                        UserDataStorage.putLineMid(mActivity, mid);
+                    }
                     LINEFriendDialogFragment dialog = new LINEFriendDialogFragment();
-                    dialog.show(getFragmentManager(), "line_dialog");
+                    dialog.show(mActivity.getSupportFragmentManager(), "line_dialog");
                     break;
             }
         }
     };
 
-    public static final String FILENAME_LINE_ID = "line_id";
     private ApiRequestFutureListener myProfileComplete = new ApiRequestFutureListener<Profile>() {
         @Override
         public void requestComplete(ApiRequestFuture<Profile> future) {
@@ -91,9 +70,9 @@ public class LINEFragment extends Fragment {
                 case SUCCESS:
                     Log.d("LineFragment", "Profile retrieving succeeded.");
                     Profile profile = future.getResponseObject();
-                    UserDataStorage.putLineMid(getActivity(), profile.mid);
+                    UserDataStorage.putLineMid(mActivity, profile.mid);
                     LINEFriendDialogFragment dialog = new LINEFriendDialogFragment();
-                    dialog.show(getFragmentManager(), "line_dialog");
+                    dialog.show(mActivity.getSupportFragmentManager(), "line_dialog");
                     break;
                 default:
                     Log.d("LineFragment", "Profile retrieving failed.");
@@ -101,8 +80,4 @@ public class LINEFragment extends Fragment {
             }
         }
     };
-
-    public void displayText(String sender, String content) {
-        mTextMessage.setText(sender + "\n" + content);
-    }
 }

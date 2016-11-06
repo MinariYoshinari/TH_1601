@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_frame"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/line_friend_image"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@mipmap/line_icon"/>
+
+    <TextView
+        android:id="@+id/line_friend_name"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:layout_toRightOf="@+id/line_friend_image"
+        android:layout_marginLeft="5dp"
+        android:gravity="center_vertical"
+        android:textColor="#777"
+        android:textSize="16sp"/>
+
+</RelativeLayout>

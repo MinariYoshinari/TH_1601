@@ -6,7 +6,8 @@ package com.stonedot.todo.smartwalk;
 
 public enum Guide {
     Guide,
-    LINENotification,
+    Notification,
+    RequestFriend,
     ConfirmReply,
     GetAnswerConfirmReply,
     DecideReply,

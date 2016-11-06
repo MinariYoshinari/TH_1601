@@ -18,4 +18,30 @@ class UsersController < ApplicationController
     end
     head (User.make_friend(user1, user2) ? :ok : :bad_request)
   end
+
+  def friend_list
+    body = request.body.read
+    json = JSON.parse(body)
+    user_mid = json['mid']
+    users = User.select_friends_of(user_mid)
+    user_list = []
+    users.each do |user|
+      user_list.push({
+                       "display_name" => user.display_name,
+                       "user_id" => user.user_id,
+                       "picture_url" => user.picture_url
+                     })
+    end
+    result = { "friend_list" => user_list }
+    render json: result
+  end
+
+  def friend_url
+    body = request.body.read
+    json = JSON.parse(body)
+    user_mid = json['mid']
+    url = User.find_by(mid: user_mid).friend_url
+    result = { "friend_url" => url }
+    render json: result
+  end
 end

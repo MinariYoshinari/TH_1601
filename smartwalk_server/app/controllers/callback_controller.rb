@@ -5,7 +5,7 @@ class CallbackController < ApplicationController
     url = url_for controller: 'register', action: 'show', :id => token
     return [{
               type: 'text',
-              text: "以下のURLにアクセスすると登録作業をすることができます。\n#{url}"
+              text: "以下のURLにアクセスして登録作業をしてください。\n#{url}"
             }, {
               type: 'text',
               text: "あなたの友だちには以下のURLを送ってください。"

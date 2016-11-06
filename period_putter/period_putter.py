@@ -43,6 +43,7 @@ class Period_putter():
 			for pos in sentence:
 				pos_list.append(pos[1])
 		n = len(pos_list)
+		pos_list.append('Undef')
 		#句点の入る位置と思われる場所を基準として[2つ前，1つ前，基準, 1つ後，2つ後]
 		vec_dec = [-1, -1, -1, -1]
 		vecs = []
@@ -94,7 +95,7 @@ class Period_putter():
 		ret_string = ""
 		len_form = len(form_list)
 		for i, c in enumerate(classes):
-			if i != 0 and (c == 1.0 or self.pos_list[i-1] == "終助詞"):
+			if i != 0 and (c == 1.0 or self.pos_list[i-1] == "終助詞" or self.pos_list[i] == "undef"):
 				ret_string += "。"
 			if i < len_form:
 				ret_string += form_list[i]

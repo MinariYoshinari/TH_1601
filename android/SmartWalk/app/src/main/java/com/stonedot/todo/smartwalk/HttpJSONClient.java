@@ -38,15 +38,15 @@ public class HttpJSONClient extends AsyncTask<Void, Void, HttpJSONClient.Respons
 
     private URL url;
     private String sendData;
-    private Responded responceCallback;
+    private Responded responseCallback;
 
     public HttpJSONClient(URL url, Map<String, String> data) {
         this.url = url;
         this.sendData = new JSONObject(data).toString();
     }
 
-    public void post(Responded responceCallback) {
-        this.responceCallback = responceCallback;
+    public void post(Responded responseCallback) {
+        this.responseCallback = responseCallback;
         execute();
     }
 
@@ -85,8 +85,8 @@ public class HttpJSONClient extends AsyncTask<Void, Void, HttpJSONClient.Respons
 
     @Override
     protected void onPostExecute(ResponseObject obj) {
-        if(responceCallback != null) {
-            responceCallback.responded(obj.code, obj.statusMessage, obj.content);
+        if(responseCallback != null) {
+            responseCallback.responded(obj.code, obj.statusMessage, obj.content);
         }
     }
 }

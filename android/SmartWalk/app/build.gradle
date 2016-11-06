@@ -10,7 +10,16 @@ android {
         targetSdkVersion 19
         versionCode 1
         versionName "1.0"
+        jackOptions {
+            enabled true
+        }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -25,5 +34,11 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.android.support:support-v4:23.4.0'
     compile 'commons-lang:commons-lang:+'
+    compile 'com.android.support:recyclerview-v7:23.4.0'
     testCompile 'junit:junit:4.12'
+}
+
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
 }

@@ -32,9 +32,7 @@ public class Reservation {
         return content;
     }
 
-    public String getTime() {
-        String format = "MM月dd日 HH:mm:ss";
-        SimpleDateFormat sdf = new SimpleDateFormat(format);
-        return sdf.format(time);
+    public String getTime(String format) {
+        return new SimpleDateFormat(format).format(time);
     }
 }

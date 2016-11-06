@@ -12,7 +12,9 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity" android:launchMode="singleTask">
+        <activity
+            android:name=".MainActivity"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,7 +33,6 @@
                     android:scheme="smart-walk" />
             </intent-filter>
         </activity>
-
         <activity android:name=".LINEFriendRegisterActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -81,6 +82,8 @@
         <meta-data
             android:name="jp.line.sdk.AuthScheme"
             android:value="line.1486135868" />
+
+        <activity android:name=".LINEFriendListActivity"></activity>
     </application>
 
 </manifest>

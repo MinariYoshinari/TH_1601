@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.stonedot.todo.smartwalk.LatestNotificationFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/list_frame"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/no_latest_notification"
+            android:layout_width="match_parent"
+            android:layout_height="82dp"
+            android:gravity="center"
+            android:text="@string/no_notification"
+            android:textSize="16sp"/>
+
+        <ImageView
+            android:id="@+id/latest_sns_image"
+            android:layout_width="72dp"
+            android:layout_height="72dp"/>
+
+        <TextView
+            android:id="@+id/latest_sender"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:layout_toRightOf="@id/latest_sns_image"
+            android:textColor="#777"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/latest_content"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_toRightOf="@id/latest_sns_image"
+            android:layout_below="@id/latest_sender"
+            android:textColor="#777"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/latest_time"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:layout_toRightOf="@id/latest_sns_image"
+            android:layout_below="@id/latest_content"
+            android:gravity="right"
+            android:textColor="#777"
+            android:textSize="12sp" />
+
+    </RelativeLayout>
+
+</LinearLayout>
